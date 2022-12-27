@@ -55,45 +55,12 @@
     <main>
       <div class="todo-lists-wrapper">
         <div class="container">
-          <div class="todo-lists empty">
-            <div class="check-mark checked">
-              <img src="/images/icon-check.svg" alt="" />
-            </div>
-            <!-- check-mark -->
-            <div class="todo-text">
-              <span>Go to gym</span>
-            </div>
-            <!-- todo-text -->
-            <div class="todo-options">
-              <span class="edit">
-                <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-              </span>
-              <span class="delete">
-                <i class="fa-sharp fa-solid fa-trash"></i>
-              </span>
-            </div>
-            <!-- .todo-options -->
-          </div>
           <!-- .todolists-->
-
-          <div class="todo-lists empty">
-            <div class="check-mark"></div>
-            <!-- check-mark -->
-            <div class="todo-text">
-              <span>Go to gym</span>
+          <div class="todo-list-container">
+            <div class="todo-lists">
+              <p>No items yet...</p>
             </div>
-            <!-- todo-text -->
-            <div class="todo-options">
-              <span class="edit">
-                <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-              </span>
-              <span class="delete">
-                <i class="fa-sharp fa-solid fa-trash"></i>
-              </span>
-            </div>
-            <!-- .todo-options -->
           </div>
-          <!-- .todolists-->
 
           <article class="todo-summary">
             <p>0 items left</p>
@@ -102,9 +69,11 @@
           <!-- .todo-summary -->
 
           <article class="todo-filters">
-            <button type="" class="active">All</button>
-            <button type="">Active</button>
-            <button type="">Completed</button>
+            <div class="fixed">
+              <button type="" class="active">All</button>
+              <button type="">Active</button>
+              <button type="">Completed</button>
+            </div>
           </article>
         </div>
         <!-- .container -->
