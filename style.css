@@ -136,7 +136,9 @@ header {
 .todo-input {
   width: 100%;
   background-color: var(--very-dark-desaturated-blue);
+  color: var(--light-grayish-blue);
   padding-block: 1.2rem;
+  padding-inline-start: 6px;
   border: none;
   border-radius: 5px;
 }
