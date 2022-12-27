@@ -15,7 +15,7 @@
 
 :root {
   /* font family */
-  --primary-font: "Montserrat", sans-serif;
+  --primary-font: "Josefin Sans", sans-serif;
 
   /* font size */
   --fz-regular: 1rem;
@@ -167,25 +167,72 @@ main {
   height: 100%;
 }
 
-.todo-list-wrapper {
+.todo-lists-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* todo-list */
-.todo-list {
+/* todo-lists */
+.todo-lists {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--very-dark-grayish-blue-dark-theme);
   background-color: var(--very-dark-desaturated-blue);
   padding-block: 1.2rem;
   border-radius: 5px;
+}
+
+.todo-lists:first-child {
   margin-block-start: -4.3rem;
 }
 
 /* if todo list is empty */
-.todo-list.empty p {
+.todo-lists.empty p {
   text-align: center;
   font-size: var(--fz-secondary);
   letter-spacing: 1px;
+}
+
+/* if there is todos in the list */
+
+.todo-lists .todo-text {
+  flex: 1;
+  font-size: var(--fz-primary);
+}
+
+.check-mark {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--dark-grayish-blue-dark-theme);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline-start: 8px;
+}
+
+.check-mark.checked {
+  background: linear-gradient(135deg, #55ddff 0%, #c058f3 100%);
+}
+
+.todo-lists .check-mark img {
+  width: 12px;
+  height: 12px;
+}
+
+.todo-options {
+  padding-inline-end: 10px;
+  cursor: pointer;
+}
+
+.todo-options .edit i {
+  color: var(--green);
+}
+
+.todo-options .delete i {
+  color: var(--red);
 }
 
 /* todo-summary */
@@ -198,7 +245,7 @@ main {
   padding-block: 1rem;
   padding-inline: 10px;
   border-radius: 5px;
-  border-top: 1px solid var(--very-dark-blue);
+  /* border-top: 1px solid var(--very-dark-blue); */
 }
 
 .todo-summary p {
@@ -247,7 +294,7 @@ main {
 @media screen and (min-width: 540px) {
   .todo-filters {
     position: absolute;
-    top: 97px;
+    top: 164px;
     left: 143px;
     margin-block-start: -46px;
     padding: 0;
