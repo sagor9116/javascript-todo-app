@@ -92,20 +92,18 @@ const renderTodos = () => {
 }
 
 // adding event listener
-
 todoListsEl.addEventListener("click", (e) => {
   const target = e.target
-  console.log(target)
   const parentEl = target.parentNode
-  console.log(parentEl)
+
   // todo id
   const todoId = Number(parentEl.id)
-  console.log(todoId)
 
   // target action
   const action = target.dataset.action
   action === "check" && checkTodo(todoId)
   action === "edit" && editTodo(todoId)
+  action === "delete" && deleteTodo(todoId)
 })
 
 // check a todo
@@ -122,4 +120,11 @@ const checkTodo = (todoId) => {
 const editTodo = (todoId) => {
   todoInput.value = todos[todoId].todoText
   editTodoId = todoId
+}
+
+// delete a todo
+const deleteTodo = (todoId) => {
+  todos = todos.filter((todo, index) => index !== todoId)
+  editTodoId = -1
+  renderTodos()
 }
