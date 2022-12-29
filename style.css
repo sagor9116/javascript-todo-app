@@ -57,6 +57,7 @@ body {
   width: 100%;
   background-color: var(--very-dark-blue);
   position: relative;
+  overflow: hidden;
 }
 
 ul {
@@ -264,7 +265,7 @@ main {
 }
 
 .todo-summary p {
-  font-size: var(--fz-secondary);
+  font-size: var(--fz-primary);
   color: var(--very-dark-grayish-blue);
 }
 

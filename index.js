@@ -2,6 +2,8 @@
 const todoForm = document.querySelector(".todo-form")
 const todoInput = document.querySelector(".todo-input")
 const todoListsEl = document.querySelector(".todo-list-container")
+const todoSummary = document.querySelector(".todo-summary")
+const itemsLeft = document.querySelector(".items-left")
 const todoNotificationEl = document.querySelector(".notification")
 
 // todos
@@ -30,6 +32,7 @@ const saveTodo = () => {
   const duplicatedTodo = todos.find(
     (todo) => todo.todoText.toUpperCase() === todoInputValue.toUpperCase()
   )
+
   if (isEmpty) {
     showNotification("input field is empty")
   } else if (duplicatedTodo) {
@@ -65,7 +68,7 @@ const renderTodos = () => {
   if (todos.length === 0) {
     todoListsEl.innerHTML = `
     <div class="todo-lists">
-      <p>No items yet...</p>
+      <p>No items now...</p>
     </div>
     `
   }
@@ -101,6 +104,8 @@ const renderTodos = () => {
   <!-- .todo-lists -->
   `
   })
+  // items left
+  getItemCountleft()
 }
 
 // adding event listener
@@ -142,7 +147,6 @@ const deleteTodo = (todoId) => {
 }
 
 // show notification
-
 const showNotification = (mgs) => {
   todoNotificationEl.innerHTML = mgs
 
@@ -153,4 +157,25 @@ const showNotification = (mgs) => {
   setTimeout(() => {
     todoNotificationEl.classList.remove("notify-enter")
   }, 2000)
+}
+
+//items left
+const getItemCountleft = () => {
+  let count = 0
+  todos.forEach((todo) => {
+    !todo.isCompleted && count++
+    // alternative
+    /* 
+      if (todo.isCompleted === false) {
+        count = count + 1
+      }
+    */
+  })
+
+  if (count === 0 || count === 1) {
+    itemsLeft.textContent = `${count} item left`
+  } else {
+    itemsLeft.textContent = `${count} items left`
+  }
+  return count
 }
