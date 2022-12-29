@@ -2,6 +2,7 @@
 const todoForm = document.querySelector(".todo-form")
 const todoInput = document.querySelector(".todo-input")
 const todoListsEl = document.querySelector(".todo-list-container")
+const todoNotificationEl = document.querySelector(".notification")
 
 // todos
 let todos = []
@@ -11,7 +12,9 @@ let editTodoId = -1
 todoForm.addEventListener("submit", (e) => {
   // prevent the default page load after submitting form
   e.preventDefault()
+  // saving todos
   saveTodo()
+  // rendering todos to the ui
   renderTodos()
 })
 
@@ -28,9 +31,9 @@ const saveTodo = () => {
     (todo) => todo.todoText.toUpperCase() === todoInputValue.toUpperCase()
   )
   if (isEmpty) {
-    alert("input field is empty")
+    showNotification("input field is empty")
   } else if (duplicatedTodo) {
-    alert("todo already exists")
+    showNotification("todo already exists")
   } else {
     if (editTodoId >= 0) {
       todos = todos.map((todo, index) => ({
@@ -57,6 +60,15 @@ const saveTodo = () => {
 const renderTodos = () => {
   // clearing todos before a re-render
   todoListsEl.innerHTML = ""
+
+  // after deleting every todo from the todo list
+  if (todos.length === 0) {
+    todoListsEl.innerHTML = `
+    <div class="todo-lists">
+      <p>No items yet...</p>
+    </div>
+    `
+  }
 
   //render todos
   todos.forEach((todo, index) => {
@@ -127,4 +139,18 @@ const deleteTodo = (todoId) => {
   todos = todos.filter((todo, index) => index !== todoId)
   editTodoId = -1
   renderTodos()
+}
+
+// show notification
+
+const showNotification = (mgs) => {
+  todoNotificationEl.innerHTML = mgs
+
+  // notification enter
+  todoNotificationEl.classList.add("notify-enter")
+
+  //notification leave
+  setTimeout(() => {
+    todoNotificationEl.classList.remove("notify-enter")
+  }, 2000)
 }
