@@ -11,8 +11,11 @@ const activeTodos = document.querySelector(".active-todos")
 const todoNotificationEl = document.querySelector(".notification")
 
 // todos
-let todos = []
+let todos = JSON.parse(localStorage.getItem("todos")) || []
 let editTodoId = -1
+
+// very 1st render
+renderTodos()
 
 //form submit
 todoForm.addEventListener("submit", (e) => {
@@ -22,6 +25,9 @@ todoForm.addEventListener("submit", (e) => {
   saveTodo()
   // rendering todos to the ui
   renderTodos()
+
+  // storing todos to localStorage
+  localStorage.setItem("todos", JSON.stringify(todos))
 })
 
 // saving new todo
@@ -64,7 +70,7 @@ const saveTodo = () => {
 }
 
 // rendering todos to the user interface
-const renderTodos = () => {
+function renderTodos() {
   // clearing todos before a re-render
   todoListsEl.innerHTML = ""
 
@@ -74,7 +80,7 @@ const renderTodos = () => {
     <div class="todo-lists">
       <p>No items now...</p>
     </div>
-    `
+ `
   }
 
   //render todos
@@ -110,7 +116,6 @@ const renderTodos = () => {
   })
   // todos left
   getItemCountleft()
-
   //  get all todos
 }
 
@@ -137,6 +142,7 @@ const checkTodo = (todoId) => {
     status: "completed",
   }))
   renderTodos()
+  localStorage.setItem("todos", JSON.stringify(todos))
 }
 
 // edit a todo
@@ -150,6 +156,7 @@ const deleteTodo = (todoId) => {
   todos = todos.filter((todo, index) => index !== todoId)
   editTodoId = -1
   renderTodos()
+  localStorage.setItem("todos", JSON.stringify(todos))
 }
 
 // show notification
@@ -166,7 +173,7 @@ const showNotification = (mgs) => {
 }
 
 //tood items left
-const getItemCountleft = () => {
+function getItemCountleft() {
   let count = 0
   todos.forEach((todo) => {
     !todo.isCompleted && count++
