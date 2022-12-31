@@ -30,34 +30,27 @@
   --bright-blue: hsl(220, 98%, 61%);
   --check-bg: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
   --white: hsl(0, 0%, 100%);
-  --green: hsl(120, 76%, 61%);
-  --red: hsl(0, 65%, 47%);
+  --green: hsl(120, 89%, 24%);
+  --red: hsl(0, 80%, 51%);
 
   /* light theme color */
-  --very-light-gray: hsl(0, 0%, 98%);
-  --very-light-grayish-blue: hsl(236, 33%, 92%);
-  --grayish-blue: hsl(233, 11%, 84%);
+  --clr-primary: hsl(0, 0%, 98%);
+  --clr-secondary: hsl(236, 33%, 92%);
+  --clr-tertiary: hsl(233, 11%, 84%);
   --dark-grayish-blue: hsl(236, 9%, 61%);
   --very-dark-grayish-blue: hsl(235, 19%, 35%);
 
-  /* dark theme color */
-  --very-dark-blue: hsl(235, 21%, 11%);
-  --very-dark-desaturated-blue: hsl(235, 24%, 19%);
-  --light-grayish-blue: hsl(234, 39%, 85%);
-  --dark-grayish-blue-dark-theme: hsl(234, 11%, 52%);
-  --very-dark-grayish-blue-dark-theme: hsl(233, 14%, 35%);
-
   /* notification container width */
-  --contaier-width: 400px;
+  --contaier-width: 200px;
 }
 
 body {
   font-family: var(--primary-font);
   font-size: 16px;
   width: 100%;
-  background-color: var(--very-dark-blue);
+  background-color: var(--clr-primary);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 ul {
@@ -66,6 +59,19 @@ ul {
 
 img {
   width: 100%;
+}
+
+/* ==========================================================================
+                           theme Styles
+   ==========================================================================
+ */
+
+.dark-theme {
+  --clr-primary: hsl(235, 21%, 11%);
+  --clr-secondary: hsl(235, 24%, 19%);
+  --clr-tertiary: hsl(234, 39%, 85%);
+  --dark-grayish-blue: hsl(234, 11%, 52%);
+  --very-dark-grayish-blue: hsl(233, 14%, 35%);
 }
 
 /* ==========================================================================
@@ -107,8 +113,7 @@ button {
 
 header {
   width: 100%;
-
-  background: url(/images/bg-mobile-dark.jpg);
+  background: url(/images/bg-mobile-light.jpg);
   background-repeat: no-repeat;
   background-position: 100% 0;
   background-size: cover;
@@ -139,8 +144,8 @@ header {
 
 .todo-input {
   width: 100%;
-  background-color: var(--very-dark-desaturated-blue);
-  color: var(--light-grayish-blue);
+  background-color: var(--clr-secondary);
+  color: var(--very-dark-grayish-blue);
   padding-block: 1.2rem;
   padding-inline-start: 12px;
   border: none;
@@ -151,15 +156,16 @@ header {
   padding-inline-start: 12px;
   font-size: var(--fz-secondary);
   letter-spacing: 2px;
-  color: var(--light-grayish-blue);
+  color: var(--very-dark-grayish-blue);
 }
 
 /* media query */
 
 @media screen and (min-width: 700px) {
   .header {
-    background: url(/images/bg-desktop-dark.jpg);
-    background-position: 100% 100%;
+    background: url(/images/bg-desktop-light.jpg);
+    background-position: center bottom;
+    background-size: 100% -160px;
     max-height: 230px;
   }
 }
@@ -169,7 +175,7 @@ header {
     ========================================================================= */
 
 main {
-  color: var(--light-grayish-blue);
+  color: var(--very-dark-grayish-blue);
   height: 100%;
 }
 
@@ -184,8 +190,8 @@ main {
   display: flex;
   align-items: center;
   gap: 10px;
-  border-bottom: 1px solid var(--very-dark-grayish-blue-dark-theme);
-  background-color: var(--very-dark-desaturated-blue);
+  border-bottom: 1px solid var(--clr-tertiary);
+  background-color: var(--clr-secondary);
   padding-block: 1.2rem;
   border-radius: 5px;
 }
@@ -213,13 +219,13 @@ main {
 
 .todo-text.checked {
   text-decoration: line-through;
-  color: var(--white);
+  color: var(--dark-grayish-blue);
 }
 
 .check-mark {
   width: 22px;
   height: 22px;
-  border: 2px solid var(--dark-grayish-blue-dark-theme);
+  border: 2px solid var(--dark-grayish-blue);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -257,7 +263,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--very-dark-desaturated-blue);
+  background-color: var(--clr-primary);
   padding-block: 1rem;
   padding-inline: 10px;
   border-radius: 5px;
@@ -266,17 +272,17 @@ main {
 
 .todo-summary p {
   font-size: var(--fz-primary);
-  color: var(--very-dark-grayish-blue);
+  color: var(--dark-grayish-blue);
 }
 
 .todo-summary .clear-completed {
-  color: var(--very-dark-grayish-blue);
+  color: var(--dark-grayish-blue);
   text-transform: capitalize;
   letter-spacing: 1px;
 }
 
 .todo-summary .clear-completed:hover {
-  color: var(--very-light-gray);
+  color: var(--very-dark-grayish-blue);
   transition: color 0.3s ease-in-out;
 }
 
@@ -290,29 +296,29 @@ main {
   display: flex;
   justify-content: center;
   gap: 0.875rem;
-  background-color: var(--very-dark-desaturated-blue);
+  background-color: var(--clr-primary);
   margin-block: 1rem;
   padding-block: 1rem;
   border-radius: 5px;
 }
 
 .todo-filters button {
-  color: var(--very-dark-grayish-blue);
+  color: var(--dark-grayish-blue);
   letter-spacing: 1px;
 }
 
-.todo-filters .active {
+.todo-filters .all {
   color: var(--bright-blue);
 }
 
 .todo-filters button:hover {
-  color: var(--very-light-gray);
+  color: var(--very-dark-grayish-blue);
   transition: color 0.3s ease-in-out;
 }
 
 /* show notification */
 .notification {
-  position: absolute;
+  /* position: absolute;
   width: calc(3 * var(--contaier-width) / 4);
   height: 60px;
 
@@ -321,11 +327,11 @@ main {
   align-items: center;
   opacity: 0.9;
   border-radius: 6px;
-  background-color: var(--very-dark-blue);
+  background-color: var(--clr-primary);
   top: 10px;
   right: calc(-3 * var(--contaier-width) / 4);
-  color: var(--very-light-gray);
-  transition: 300ms right ease-in-out;
+  color: var(--dark-grayish-blue);
+  transition: 300ms right ease-in-out; */
 }
 .notify-enter {
   right: 10px;
@@ -352,7 +358,7 @@ footer {
 }
 
 footer p {
-  color: var(--very-light-gray);
+  color: var(--dark-grayish-blue);
   font-size: var(--fz-secondary);
   text-align: center;
 }

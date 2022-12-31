@@ -2,8 +2,12 @@
 const todoForm = document.querySelector(".todo-form")
 const todoInput = document.querySelector(".todo-input")
 const todoListsEl = document.querySelector(".todo-list-container")
+const todoList = document.querySelector(".todo-list")
 const todoSummary = document.querySelector(".todo-summary")
 const itemsLeft = document.querySelector(".items-left")
+const clearCompletedTodos = document.querySelector(".clear-completed")
+const allTodos = document.querySelector(".all")
+const activeTodos = document.querySelector(".active-todos")
 const todoNotificationEl = document.querySelector(".notification")
 
 // todos
@@ -76,39 +80,41 @@ const renderTodos = () => {
   //render todos
   todos.forEach((todo, index) => {
     todoListsEl.innerHTML += `
-    <div class="todo-lists" id=${index}>
-      <div class='check-mark ${
-        todo.isCompleted ? "checked" : ""
-      }' data-action ="check" >
-      ${todo.isCompleted ? '<img src="/images/icon-check.svg" alt="" />' : ""}
-      </div>
-      <!-- check-mark -->
-  
-      <div class='todo-text ${
-        todo.isCompleted ? "checked" : ""
-      }' id=${index} data-action ="check">
-          ${todo.todoText}
-      </div>
-      <!-- todo-text -->
-
-      <div class="todo-options">
-        <span class="edit" id=${index}>
-          <i class="fa-sharp fa-solid fa-pen-to-square" data-action = "edit"></i>
-        </span>
-        <span class="delete" id=${index}>
-          <i class="fa-sharp fa-solid fa-trash" data-action = "delete"></i>
-        </span>
-      </div>
-      <!-- .todo-options -->
+  <div class="todo-lists" id=${index} draggable="true">
+    <div class='check-mark ${
+      todo.isCompleted ? "checked" : ""
+    }' data-action ="check" >
+    ${todo.isCompleted ? '<img src="/images/icon-check.svg" alt="" />' : ""}
     </div>
-  <!-- .todo-lists -->
-  `
+    <!-- check-mark -->
+
+    <div class='todo-text ${
+      todo.isCompleted ? "checked" : ""
+    }' id=${index} data-action ="check">
+        ${todo.todoText}
+    </div>
+    <!-- todo-text -->
+
+    <div class="todo-options">
+      <span class="edit" id=${index}>
+        <i class="fa-sharp fa-solid fa-pen-to-square" data-action = "edit"></i>
+      </span>
+      <span class="delete" id=${index}>
+        <i class="fa-sharp fa-solid fa-trash" data-action = "delete"></i>
+      </span>
+    </div>
+    <!-- .todo-options -->
+  </div>
+<!-- .todo-lists -->
+`
   })
-  // items left
+  // todos left
   getItemCountleft()
+
+  //  get all todos
 }
 
-// adding event listener
+// adding event listener to todo list
 todoListsEl.addEventListener("click", (e) => {
   const target = e.target
   const parentEl = target.parentNode
@@ -159,7 +165,7 @@ const showNotification = (mgs) => {
   }, 2000)
 }
 
-//items left
+//tood items left
 const getItemCountleft = () => {
   let count = 0
   todos.forEach((todo) => {
@@ -179,3 +185,8 @@ const getItemCountleft = () => {
   }
   return count
 }
+
+// drag and drop to reorder list
+new Sortable(todoListsEl, {
+  animation: 350,
+})

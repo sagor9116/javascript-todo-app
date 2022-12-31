@@ -34,7 +34,11 @@
           <div class="app-title">
             <h1>TODO</h1>
             <button type="" id="themeToggler">
-              <img src="/images/icon-sun.svg" alt="icon-sun" />
+              <img
+                src="/images/icon-moon.svg"
+                alt="icon-sun"
+                class="theme-img"
+              />
             </button>
           </div>
           <!-- .app-title -->
@@ -70,8 +74,8 @@
 
           <article class="todo-filters">
             <div class="fixed">
-              <button type="" class="active">All</button>
-              <button type="">Active</button>
+              <button type="" class="all">All</button>
+              <button type="" class="active-todos">Active</button>
               <button type="">Completed</button>
             </div>
           </article>
@@ -88,6 +92,8 @@
       <p>Drag and drop to reorder list</p>
     </footer>
 
-    <script src="/index.js"></script>
+    <script src="/js/Sortable.js"></script>
+    <script src="/js/theme.js"></script>
+    <script src="/js/index.js"></script>
   </body>
 </html>
